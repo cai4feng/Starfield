@@ -1,3 +1,4 @@
+JumboParticle gg;
 Particle[] a = new Particle[100];
 void setup()
 {
@@ -13,6 +14,7 @@ void setup()
 			a[i] = new NormalParticle();
 		}	
 	}
+	gg=new JumboParticle();
 }
 void draw()
 {
@@ -22,6 +24,8 @@ void draw()
 	a[i].show();
 	a[i].move();
 }
+gg.show();
+	gg.move();
 }
 class NormalParticle implements Particle
 {
@@ -51,15 +55,11 @@ class NormalParticle implements Particle
 		ellipse((float)x,(float)y,10,10);
 	}
 }
-interface Particle
-{
-	public void move();
-	public void show();
-}
+
 class OddballParticle implements Particle
 {
 	double x,y,dAngle,dSpeed;
-	int partcolor;
+	int partcolor,g;
 	OddballParticle()
 	{
 		x = 400;
@@ -67,6 +67,7 @@ class OddballParticle implements Particle
 		dAngle = Math.PI*Math.random()*5;
 		dSpeed = Math.random()*10;
 		partcolor = color(255);
+		g=40;
 	}
 	public void move()
 	{
@@ -83,6 +84,17 @@ class OddballParticle implements Particle
 	public void show()
 	{
 		fill(partcolor);
-		ellipse((float)x, (float)y, 40, 40);
+		ellipse((float)x, (float)y, g, g);
 	}
+}
+class JumboParticle extends OddballParticle
+{
+ JumboParticle()
+ {g=100;}
+
+}
+interface Particle
+{
+	public void move();
+	public void show();
 }
